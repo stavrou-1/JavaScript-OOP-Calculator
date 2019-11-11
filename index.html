@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>JS OOP Calculator</title>
+  <link rel="stylesheet" type="style/css" href="./style.css"/>
+</head>
+<body>
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="content calculator">
+      <h1 class="calcTitle"></h1>
+      <form onsubmit="return false;">
+        <!-- Output -->
+        <div class="calc-output">
+         <input type="text" class="form-control" id="inputOutput" placeholder="0" readonly="true"/>
+        </div>
+        <!-- /end calc output -->
+        <table class="table table1">
+          <tr col="100">
+            <td><button role="button">AC</button></td>
+            <td><button role="button">CE</button></td>
+          </tr>
+        </table>
+        <table class="table table2">
+          <tr col="2">
+            <td><button role="button">7</button></td>
+            <td><button role="button">8</button></td>
+            <td><button role="button">9</button></td>
+            <td><button role="button">/</button></td>
+          </tr>
+          <tr>
+            <td><button role="button">4</button></td>
+            <td><button role="button">5</button></td>
+            <td><button role="button">6</button></td>
+            <td><button role="button">*</button></td>
+          </tr>
+          <tr>
+            <td><button role="button">1</button></td>
+            <td><button role="button">2</button></td>
+            <td><button role="button">3</button></td>
+            <td><button role="button">-</button></td>
+          </tr>
+          <tr>
+            <td><button role="button">0</button></td>
+            <td><button role="button">.</button></td>
+            <td><button role="button">=</button></td>
+            <td><button role="button">+</button></td>
+          </tr>
+        </table>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="./jquery.js"></script><!-- Jquery -->
+<script src="./app.js"></script><!-- Custom JS -->
+</body>
+</html>
