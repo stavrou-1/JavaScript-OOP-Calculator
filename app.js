@@ -1,7 +1,7 @@
 // JS Calculator written in OOP class inheritance pattern.
 class Config {
   constructor(name, lang) {
-    // basic configuration variables for our app.
+    // basic configuration properties for our app.
     this.name = name;
     this.lang = lang;
     this.result = 0;
