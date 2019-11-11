@@ -25,33 +25,33 @@ class Calculator extends Config {
   convertStringExpressions(str) {
     if (str.length === 0) return 0;
     
-    let a = [];
-    a = str.split(' ');
-    for (let i = 0; i < a.length; i++) {
-      if (this.isNumeric(a[i])) {
-        a[i] = Number(a[i]);
+    let assignmentArray = [];
+    assignmentArray = str.split(' ');
+    for (let i = 0; i < assignmentArray.length; i++) {
+      if (this.isNumeric(assignmentArray[i])) {
+        assignmentArray[i] = Number(assignmentArray[i]);
       }
     }
-    return a;
+    return assignmentArray;
   }
-  multiplyOrDivide(num) {
+  multiplyOrDivide(computeArray) {
     let total = 0;
-    if (num.indexOf('*') !== -1 || num.indexOf('/') !== -1) {
-      for (let i = 0; i < num.length; i++) {
+    if (computeArray.indexOf('*') !== -1 || computeArray.indexOf('/') !== -1) {
+      for (let i = 0; i < computeArray.length; i++) {
         try {
-          switch(num[i]) {
+          switch(computeArray[i]) {
             case '*':
-              total = num[i - 1] * num[i + 1];
-              num.splice(i - 1, 3, total);
+              total = computeArray[i - 1] * computeArray[i + 1];
+              computeArray.splice(i - 1, 3, total);
               i--;
               break;
             case '/':
-              if (num[i + 1] === 0) {
+              if (computeArray[i + 1] === 0) {
                 throw new Error("dividing by zero");
               } else {
-                total = num[i - 1] / num[i + 1];
+                total = computeArray[i - 1] / computeArray[i + 1];
               }
-              num.splice(i - 1, 3, total);
+              computeArray.splice(i - 1, 3, total);
               i--;
               break;
             default:
@@ -62,27 +62,32 @@ class Calculator extends Config {
         }
       }
     }
-    return num;
+    return computeArray;
   }
   // return name of calculator
   returnName() {
     return this.name;
   }
   // determine weather to add or subtract.
-  addOrSubtract(num) {
+  addOrSubtract(computeArray) {
     let total = 0;
-    if (num.indexOf('+') !== -1 || num.indexOf('-') !== -1) {
-      for (let i = 0; i < num.length; i++) {
+    console.log(computeArray);
+    if (computeArray.indexOf('+') !== -1 || computeArray.indexOf('-') !== -1) {
+      for (let i = 0; i < computeArray.length; i++) {
         try {
-          switch(num[i]) {
+          switch(computeArray[i]) {
             case '+':
-              total = num[i - 1] + num[i + 1];
-              num.splice(i - 1, 3, total);
+              total = computeArray[i - 1] + computeArray[i + 1];
+              console.log("total: " + total);
+              console.log("computeArray[i - 1]: " + computeArray[i - 1]);
+              console.log("computeArray[i + 1]: " + computeArray[i + 1]);
+              computeArray.splice(i - 1, 3, total);
+              console.log("computeArray.splice: " + computeArray);
               i--;
               break;
             case '-':
-              total = num[i - 1] - num[i + 1];
-              num.splice(i - 1, 3, total);
+              total = computeArray[i - 1] - computeArray[i + 1];
+              computeArray.splice(i - 1, 3, total);
               i--;
               break;
             default:
@@ -93,21 +98,29 @@ class Calculator extends Config {
         }
       }
     }
-    return num;
+    return computeArray;
   }
   computeEquals(str) {
     if (str.length === 0) {
       return "";
     }
+
+    console.log('str before: ' + str);
     let expression = this.convertStringExpressions(str);
     this.previous = this.result;
     if (expression.length === 0) {
       this.result = 0;
     }
+
+    console.log('expression after: ' + expression);
     
     // order of operations
     expression = this.multiplyOrDivide(expression);
     expression = this.addOrSubtract(expression);
+
+
+    console.log('expression after functions called:');
+    console.log(expression)
     
     try {
       if (expression.length !== 1 || !Number(expression[0])) {
@@ -149,7 +162,7 @@ class Calculator extends Config {
     let print = document.getElementById("inputOutput");
      
     // print out application name.
-    $('.calcTitle').html(app.returnName());
+    $('.calcTitle').html(`${app.name}, ${app.lang}`);
     console.log(app.returnName())
     // any button actions.
     $('.calculator table button').each(function() {
@@ -157,7 +170,7 @@ class Calculator extends Config {
       let values = $(this).text();
       let appVals = app.opValues;
       
-      console.log(values)
+      // console.log(values)
       
         // any initial functions
         try {
@@ -212,7 +225,7 @@ class Calculator extends Config {
         }
       
        
-      console.log(app.messages);
+      // console.log(app.messages);
       });
     });
   }
