@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.content {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 30em;
+}
+.table {
+/*   border: 0.1em solid orange; */
+  width: 100%;
+  margin: 0;
+}
+.table.table1 tr,
+.table.table1 td,
+.table.table3 td {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+}
+.table.table1 td button,
+.table.table2 td button,
+.table.table3 td button {
+  width: 100%;
+}
+.table.table2 tr,
+.table.table2 td {
+  margin: 0;
+  padding: 0;
+  width: 25%;
+}
+button {
+  border: 0;
+  background-color: gainsboro;
+  padding: 0.5em;
+  font-size: 1.2em;
+  cursor: pointer;
+}
